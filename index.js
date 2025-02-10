@@ -10,6 +10,15 @@ app.get('/about', (req, res) => res.status(200).json({
     message: 'About page',
     data: []
 }))
+app.post('/contoh', (req, res) => res.send('request method POST'))
+app.put('/contoh', (req, res)=> res.send("Request method PUT"))
+app.delete('/contoh', (req, res) => res.send("Request method DELETE"))
+app.patch('/contoh', (req,res) => res.send("Request method PATCH"))
+
+app.all('/universal', (req, res) => res.send(`Request method ${req.method}`))
+// Routing dinamis 
+// 1. Menggunakan params
+app.get('/post/:id', (req, res)=> res.send(`Artikel ke - ${req.params.id}`))
 
 const hostname = "127.0.0.1"
 const port = 3000
