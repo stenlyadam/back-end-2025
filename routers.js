@@ -1,7 +1,13 @@
 const express = require("express");
 const routers = express.Router();
+const path = require("path");
 
 // Routing
+routers.get("/download", (req, res) => {
+  const filename = "dummy.png";
+  res.download(path.join(__dirname, "/download", filename), "dummy-photo.png");
+});
+
 routers.post("/login", (req, res) => {
   const { username, password } = req.body;
   res.status(200).json({
