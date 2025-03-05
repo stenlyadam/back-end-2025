@@ -7,6 +7,7 @@ const morgan = require("morgan");
 const app = express();
 const routers = require("./routers");
 const path = require("path");
+const cors = require("cors");
 
 //Middleware
 const log = (req, res, next) => {
@@ -21,6 +22,12 @@ app.use(morgan("tiny"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  cors({
+    origin: "http://127.0.0.1:5500",
+    methods: ["GET", "PUT"],
+  })
+);
 
 //Routing
 app.use(routers);
